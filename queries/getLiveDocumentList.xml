@@ -1,0 +1,28 @@
+<query id="getLiveDocumentList" action="select">
+    <tables>
+        <table name="livexe_documents" alias="documents"/>
+        <table name="livexe_rss" alias="rss" />
+    </tables>
+    <columns>
+        <column name="documents.*" />
+        <column name="rss.title" alias="rss_title" />
+        <column name="rss.homepage" alias="homepage" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="documents.module_srl" var="module_srl" filter="number" />
+        <condition operation="equal" column="rss.livexe_rss_srl" var="rss_srl" pipe="and" />
+        <condition operation="equal" column="rss.livexe_rss_srl" default="documents.livexe_rss_srl" filter="number" pipe="and"/>
+        <group pipe="and">
+            <condition operation="like" column="documents.title" var="title" />
+            <condition operation="like" column="documents.content" var="content" pipe="or" />
+            <condition operation="like" column="rss.homepage" var="homepage" pipe="or" />
+            <condition operation="like" column="documents.tags" var="tag" pipe="or" />
+        </group>
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="documents.list_order" order="order_type" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

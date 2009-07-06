@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">liveXE</title>
+    <title xml:lang="en">liveXE</title>
+    <description xml:lang="ko">등록된 RSS 주소를 이용하여 글 수집/ 출력을 하는 메타 사이트 제작용 모듈</description>
+    <description xml:lang="en">등록된 RSS 주소를 이용하여 글 수집/ 출력을 하는 메타 사이트 제작용 모듈</description>
+    <version>0.2</version>
+    <date>2009-04-13</date>
+    <category>service</category>
+
+    <author email_address="zero@zeroboard.com" link="http://blog.nzeo.com">
+        <name xml:lang="ko">zero</name>
+        <name xml:lang="en">zero</name>
+    </author>
+</module>

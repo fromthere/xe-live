@@ -1,0 +1,238 @@
+<!--%import("./style.css")-->
+<!--%import("./live.js")-->
+
+<!--@if($module_info->title)-->
+<div class="liveHeader">
+    <div class="liveTitle">
+        <h2 class="liveTitleText"><a href="{getUrl('','mid',$mid,'listStyle',$listStyle)}">{$module_info->title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></a></h2>
+    </div>
+
+    <!--@if($module_info->comment)-->
+    <p class="liveDescription">{$module_info->comment}</p>
+    <!--@end-->
+</div>
+<!--@end-->
+
+<div class="liveBox">
+
+    <div class="liveLeftBox">
+
+        <div id="livePopularList">
+            <ul class="liveTab">
+                {@ $_idx = 0; }
+                <!--@foreach($popular_tab as $tag => $popular_list)-->
+                <li <!--@if(!$_idx)-->class="active"<!--@end-->>
+                    <a onmouseover="live_tab_show(jQuery(this),jQuery(this).parents('ul.liveTab').next('div.liveList'),{$_idx})" href="{getUrl('search_target','tag','search_keyword',$tag)}">{cut_str($tag,10)}</a>
+                </li>
+                    {@ $_idx++}
+                <!--@end-->
+            </ul>
+
+            <div class="liveList">
+                {@ $_idx = 0;}
+                <!--@foreach($popular_tab as $tag => $popular_list)-->
+                <div class="tabContent<!--@if(!$_idx)--> open<!--@end-->">
+                    {@ $_thumbnail = false; }
+                    <!--@if($popular_list[0]->thumbnail)-->
+                    <p style="margin-right: -100px;" class="liveThumb floatLeft">
+                        <a class="thumb" href="{$popular_list[0]->link}" onclick="window.open(this.href);return false;"><img style="width: 100px; height: 100px;" src="{getUrl()}{$popular_list[0]->thumbnail}"/></a>
+                    </p>
+                        {@ $_thumbnail = true; }
+                    <!--@end-->
+
+                    <div<!--@if($_thumbnail)--> style="padding-left: 110px;"<!--@end-->>
+
+                        <table cellspacing="0" border="1" class="liveTable">
+                        <tbody>
+                            <!--@foreach($popular_list as $key => $val)--><!--@if($key>0)-->
+                            <tr>
+                                <td class="title">
+                                    <div><a href="{$val->link}" onclick="window.open(this.href);return false;">{(cut_str($val->title,44))}</a></div>
+                                </td>
+                                <td class="author"><div>{($val->author)}</div></td>
+                                <td class="time"><div><span class="date">{zdate($val->regdate,"m/d")}</span> <span class="hour">{zdate($val->regdate,"H:i")}</span></div></td>
+                            </tr>
+                            <!--@end--><!--@end-->
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                    {@ $_idx++;}
+                <!--@end-->
+            </div>
+            
+        </div>
+
+        <div id="searchForm">
+            <form action="{getUrl('')}" method="get">
+                <input type="hidden" name="mid" value="{$mid}" />
+                <select name="search_target">
+                    <option <!--@if($search_target=="title"||!$search_target)--> selected="selected" <!--@end-->value="title">{$lang->title}</option>
+                    <option <!--@if($search_target=="content")--> selected="selected" <!--@end--> value="content">{$lang->content}</option>
+                    <option <!--@if($search_target=="tag")--> selected="selected" <!--@end--> value="tag">{$lang->tag}</option>
+                    <option <!--@if($search_target=="homepage")--> selected="selected" <!--@end--> value="homepage">{$lang->homepage}</option>
+                </select>
+                <input type="text" name="search_keyword" value="<!--@if($search_target!='rss_srl')-->{htmlspecialchars($search_keyword)}<!--@end-->" />
+                <input type="submit" value="{$lang->cmd_search}" />
+                <!--@if($search_keyword && $search_target != 'rss_srl')--><input type="button" value="{$lang->cmd_cancel}" onclick="location.href='{getUrl('search_target','','search_keyword','')}'"/><!--@end-->
+            </form>
+        </div>
+
+        <!--@if($search_target == 'rss_srl')-->
+        <div class="searchInSite">
+            {$lang->homepage} : <a href="{$selected_site->homepage}" onclick="window.open(this.href); return false;" class="site">{$selected_site->title}</a>
+            [<a href="{getUrl('search_target','','search_keyword','')}" class="cancel">{$lang->cmd_list}</a>]
+        </div>
+        <!--@end-->
+
+
+        <div id="liveList">
+            <ul class="liveWebzine">
+                <!--@foreach($document_list as $key => $val)-->
+                <li<!--@if($val->thumbnail)--> class="thumbnail"<!--@end-->>
+                    <!--@if($val->thumbnail)-->
+                    <p class="thumbArea"><a class="thumb" href="{$val->link}" onclick="window.open(this.href); return false;"><img src="{getUrl()}{$val->thumbnail}" width="100" height="100" /></a></p>
+                    <!--@end-->
+
+                    <p class="titleArea">
+                        <a class="title" href="{$val->link}" onclick="window.open(this.href); return false;">{($val->title)}</a>
+                    </p>
+                    <p class="text">
+                        {(cut_str(preg_replace('/<([^>]+)>/i','',$val->content), 180))}
+                    </p>
+                    <!--@if($val->tags)-->
+                    {@ $_tags = array() }
+                    <ul class="tag">
+                        {@ $_tags = explode(',',$val->tags)}
+                        <!--@foreach($_tags as $t)-->
+                        <li><a href="{getUrl('search_target','tag','search_keyword',$t)}">{htmlspecialchars($t)}</a></li>
+                        <!--@end-->
+                    </ul>
+                    <!--@end-->
+                    <p class="url">
+                        <!--@if($val->author)-->{$val->author}, <!--@end-->
+                        {zdate($val->regdate,"Y/m/d H:i")}
+                        <a href="{$val->homepage}" onclick="window.open(this.href); return false;">{htmlspecialchars($val->rss_title)}</a>
+                    </p>
+                </li>
+                <!--@end-->
+            </ul>
+        </div>
+
+        <div class="pagination a1">
+            <a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division)}" class="prevEnd">{$lang->first_page}</a> 
+            <!--@while($page_no = $page_navigation->getNextPage())-->
+                <!--@if($page == $page_no)-->
+                    <strong>{$page_no}</strong> 
+                <!--@else-->
+                    <a href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division)}">{$page_no}</a>
+                <!--@end-->
+            <!--@end-->
+            <a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division)}" class="nextEnd">{$lang->last_page}</a>
+        </div>
+    </div>
+
+    <hr class="liveHR" />
+
+    <div class="liveRightBox">
+
+        <div id="livePopularTags">
+
+            <div class="roundBoxRound">
+                <div class="roundBox">
+                    <div class="tags">
+                        <ul class="liveTagCloud">
+                            <!--@foreach($tags as $val)-->
+                            <li class="level{$val->rank}">
+                                <a href="{getUrl('search_target','tag','search_keyword', $val->tag)}">{htmlspecialchars($val->tag)}</a>
+                            </li>
+                            <!--@end-->
+                        </ul>
+                    </div>
+                    <span class="rcContainer rcTop"><span class="rc tl"></span><span class="rc tr"></span></span>
+                    <span class="rcContainer rcBottom"><span class="rc bl"></span><span class="rc br"></span></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="livePopularThumbnails">
+            <!--@foreach($thumbnails as $key => $val)-->
+                <div>
+                    <a href="{$val->link}" onclick="window.open(this.href); return false;"><img src="{getUrl()}{$val->thumbnail}" width="100" height="100" alt="{htmlspecialchars($val->title)}"/></a>
+                    <p>{htmlspecialchars($val->title)}</p>
+                </div>
+            <!--@end-->
+        </div>
+
+        <div id="liveRSSList">
+            <ul class="liveTab">
+                <li class="active">
+                    <a onmouseover="live_tab_show(jQuery(this),jQuery(this).parents('ul.liveTab').next('div.liveList'),0)" href="#" onclick="return false;">{$lang->new_rss_list} ({$latest_rss_count})</a>
+                </li>
+                <li>
+                    <a onmouseover="live_tab_show(jQuery(this),jQuery(this).parents('ul.liveTab').next('div.liveList'),1)" href="#" onclick="return false;">{$lang->my_rss_list} ({count($own_rss_list)})</a>
+                </li>
+            </ul>
+
+            <div class="liveList">
+                <div class="tabContent open">
+                    <ul>
+                        <!--@foreach($latest_rss_list as $key => $val)-->
+                        <li>
+                            <a href="{$val->rss_url}" onclick="window.open(this.href);return false;"><img src="./img/rss.gif" alt="RSS" /></a>
+                            <a href="{getUrl('search_target','rss_srl','search_keyword',$val->livexe_rss_srl)}">{$val->title}</a>
+                        </li>
+                        <!--@end-->
+                    </ul>
+                </div>
+                <div class="tabContent">
+                    <!--@if($is_logged && $grant->insert_rss)-->
+                    <ul>
+                        <!--@foreach($own_rss_list as $key => $val)-->
+                        <li>
+                            <a href="#" onclick="if(confirm('{$lang->confirm_delete}')) doDeleteRss('{$val->livexe_rss_srl}'); return false;"><img src="./img/buttonDelete.gif" alt="{$lang->cmd_delete}" /></a>
+                            <a href="{$val->homepage}" onclick="window.open(this.href);return false;">{$val->title}</a> 
+                        </li>
+                        <!--@end-->
+                    </ul>
+
+                    <form action="./" method="post" onsubmit="return procFilter(this, get_rss);" id="getRssForm">
+                        <input type="hidden" name="mid" value="{$mid}" />
+                        <span class="about">{$lang->about_insert_rss}</span>
+                        <dl class="regi hide">
+                            <dt>{$lang->rss_url}</dt>
+                            <dd><input type="text" name="rss_url" class="inputTypeText"/></dd>
+                        </dl>
+                        <span class="button strong"><input type="submit" value="{$lang->cmd_registration}" /></span>
+                    </form>
+
+                    <form action="./" method="post" onsubmit="return procFilter(this, insert_rss);" style="display:none" id="insertRssForm">
+                        <input type="hidden" name="mid" value="{$mid}" />
+                        <span class="about">{$lang->about_insert_rss}</span>
+                        <dl class="regi hide">
+                            <dt>{$lang->title}</dt>
+                            <dd><input type="text" name="title" class="inputTypeText"/></dd>
+                            <dt>{$lang->homepage}</dt>
+                            <dd><input type="text" name="homepage" class="inputTypeText"/></dd>
+                            <dt>{$lang->rss_url}</dt>
+                            <dd><input type="text" name="rss_url" class="inputTypeText"/></dd>
+                        </dl>
+                        <span class="button strong"><input type="submit" value="{$lang->cmd_registration}" /></span>
+                        <span class="button"><input type="button" value="{$lang->cmd_cancel}" onclick="doCancelInsertRss(); return false;"/></span>
+
+                    </form>
+                    <!--@else-->
+                    {$lang->about_reg_livexe}
+                    <!--@end-->
+                </div>
+            </div>
+        </div>
+
+        <div id="liveStatus">
+            RSS Url : <strong>{number_format($status->rss)}</strong>, Items : <strong>{number_format($status->document)}</strong>, Tags <strong>{number_format($status->tag)}</strong>
+        </div>
+
+    </div>
+
+</div>
