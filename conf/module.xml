@@ -4,6 +4,7 @@
         <grant name="insert_rss" default="member">
             <title xml:lang="ko">RSS 등록</title>
             <title xml:lang="en">RSS 등록</title>
+            <title xml:lang="jp">RSS登録</title>
         </grant>
     </grants>
     <permissions>
