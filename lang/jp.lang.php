@@ -6,7 +6,7 @@
      **/
 
     $lang->livexe = 'liveXE';
-    $lang->rss_url = 'RSS Url';
+    $lang->rss_url = 'RSS URL';
 
     // ボタンに使う
     $lang->cmd_module_config = '共通設定';
@@ -21,14 +21,14 @@
 
     // その他
     $lang->about_livexe = '（会員）ユーザーがRSSを登録し、登録されたRSSを収集、その収集した記事をコンテンツとしたメタサイトを構築するモジュールです。';
-    $lang->about_insert_rss = 'RSSを登録します。<br/>必ず、タイトル、RSS Url、ホームページアドレスを入力して下さい。 (RSS2.0/ATOMフォーマットに対応)';
-    $lang->about_livexe_web_crawler = 'このページはliveXEに登録したRSSをクロールします。<br />下の更新サイクルを指定し、ウェブブラウザーを開いたままにしておけば、各RSSの更新サイクルに合わせて、記事を収集します。 (単位：時間)';
+    $lang->about_insert_rss = 'RSSを登録します。<br/>タイトル、RSS URL、ホームページURLは必須。<br /> (現在RSS2.0/ATOMフォーマットに対応)';
+    $lang->about_livexe_web_crawler = 'このページにてliveXEに登録したRSSをクロールします。<br />更新サイクルを指定し、ウェブブラウザーを開いたままにしておけば、各RSSの更新サイクルに合わせて、記事を収集します。 (単位：時間)';
 
-    $lang->rss_url_already_registed = '既に登録されたRSS Urlです。';
+    $lang->rss_url_already_registed = '既に登録されたRSS URLです。';
     $lang->about_reg_livexe = '権限が無いため、RSS登録が出来ません。';
 
-    $lang->cmd_start_crawl = '登録された RSS記事収集';
+    $lang->cmd_start_crawl = '登録された RSS記事を収集する';
     $lang->cmd_cancel_search = 'サイト検索を取り消す';
 
-    $lang->msg_not_supported_rss = 'RSS 2.0, Atom Feedのみ対応しています。';
+    $lang->msg_not_supported_rss = '現在RSS 2.0, Atom Feedのみ対応しています。';
 ?>
