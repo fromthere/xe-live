@@ -7,14 +7,12 @@
 
     $lang->livexe = 'liveXE';
     $lang->rss_url = 'RSS 주소';
+    $lang->tag_pop = '인기 태그';
+    $lang->feed_item = '피드 목록';
 
     // 버튼에 사용되는 언어
     $lang->cmd_module_config = '공통 설정';
     $lang->cmd_view_info = '정보';
-
-    $lang->new_rss_list = '최신 RSS';
-    $lang->my_rss_list = '내 RSS';
-
 
     $lang->popular_tag_period = '태그 출력 기간';
     $lang->about_popular_tag_period = '인기태그를 출력할때 최근 며칠내의 태그들을 대상으로 할지 결정할 수 있습니다. (단위 일, 기본 30일)';

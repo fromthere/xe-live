@@ -7,8 +7,10 @@
 
     $lang->livexe = 'liveXE';
     $lang->rss_url = 'RSS URL';
+    $lang->tag_pop = '인기 태그';
+    $lang->feed_item = '피드 목록';
 
-    // ボタンに使う
+// ボタンに使う
     $lang->cmd_module_config = '共通設定';
     $lang->cmd_view_info = '情報';
 
