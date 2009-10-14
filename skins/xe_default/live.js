@@ -1,10 +1,6 @@
 function live_tab_show(tab,list,i){
     tab.parents('ul.liveTab').children('li.active').removeClass('active');
     tab.parent('li').addClass('active');
-    jQuery('>div.tabContent',list).each(function(j){
-        if(j==i) jQuery(this).addClass('open');
-        else jQuery(this).removeClass('open');
-    });
 }
 
 function completeGetRss(ret_obj) {

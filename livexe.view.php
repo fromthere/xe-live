@@ -36,6 +36,21 @@
                 Context::addJsFilter($this->module_path.'tpl/filter', 'get_rss.xml');
                 Context::addJsFilter($this->module_path.'tpl/filter', 'insert_rss.xml');
             }
+
+            $args->module_srl = $this->module_srl;
+            $output = executeQuery('livexe.getRSSCount', $args);
+            Context::set('total_feeds', $output->data->count);
+
+            $output = executeQuery('livexe.getDocumentCount', $args);
+            Context::set('total_articles', $output->data->count);
+
+            if(Context::get('is_logged')) {
+                $logged_info = Context::get('logged_info');
+                $args->module_srl = $this->module_srl;
+                $args->member_srl = $logged_info->member_srl;
+                $output = executeQuery('livexe.getMyRSSCount', $args);
+                Context::set('total_my_feeds', $output->data->count);
+            }
         }
 
         /**
@@ -43,16 +58,6 @@
          **/
         function dispLivexeContent () {
             $oLivexeController = &getController('livexe');
-
-            // 통계 추출
-            $status_args->module_srl = $this->module_info->module_srl;
-            $output = executeQuery('livexe.getRSSCount', $status_args);
-            $status->rss = $output->data->count;
-            $output = executeQuery('livexe.getDocumentCount', $status_args);
-            $status->document = $output->data->count;
-            $output = executeQuery('livexe.getTagCount', $status_args);
-            $status->tag = $output->data->count;
-            Context::set('status', $status);
 
             /**
              * 인기 태그 추출
@@ -94,37 +99,6 @@
                 }
             }
             Context::set('popular_tab', $popular_tab);
-
-            /**
-             * 썸네일 추출
-             **/
-            $thumbnail_args->module_srl = $this->module_srl;
-            $thumbnail_args->order_type = 'desc';
-            $output = executeQueryArray('livexe.getThumbnails',$thumbnail_args);
-            Context::set('thumbnails', $output->data);
-
-            
-            /**
-             * 최근 등록된 RSS 추출
-             **/
-            $rss_args->module_srl = $this->module_srl;
-            $rss_args->sort_index = 'regdate';
-            $rss_args->order_type = 'desc';
-            $rss_args->list_count = 30;
-            $output = executeQueryArray('livexe.getRssList', $rss_args);
-            Context::set('latest_rss_list', $output->data);
-            Context::set('latest_rss_count', $output->total_count);
-
-            /**
-             * 로그인 사용자의 RSS 추출
-             **/
-            if(Context::get('is_logged')) {
-                $logged_info = Context::get('logged_info');
-                $rss_args->member_srl = $logged_info->member_srl;
-                $rss_args->list_count = 999999999;
-                $output = executeQueryArray('livexe.getRssList', $rss_args);
-                Context::set('own_rss_list', $output->data);
-            }
 
             /** 
              * 사이트 내 검색
@@ -180,6 +154,49 @@
             Context::set('page_navigation', $output->page_navigation);
 
             $this->setTemplateFile('index');
+        }
+
+        function dispLivexeFeeds() {
+            /**
+             * 최근 등록된 RSS 추출
+             **/
+            $rss_args->module_srl = $this->module_srl;
+            $rss_args->sort_index = 'livexe_rss.regdate';
+            $rss_args->order_type = 'desc';
+            $rss_args->list_count = 30;
+            $output = executeQueryArray('livexe.getRssList', $rss_args);
+
+            // 일반 글을 구해서 context set
+            Context::set('feeds_list', $output->data);
+            Context::set('total_count', $output->total_count);
+            Context::set('total_page', $output->total_page);
+            Context::set('page', $output->page);
+            Context::set('page_navigation', $output->page_navigation);
+
+            $this->setTemplateFile('feeds');
+        }
+
+        function dispLivexeMyFeeds() {
+            /**
+             * 로그인 사용자의 RSS 추출
+             **/
+            if(Context::get('is_logged')) {
+                $logged_info = Context::get('logged_info');
+                $rss_args->module_srl = $this->module_srl;
+                $rss_args->sort_index = 'livexe_rss.regdate';
+                $rss_args->order_type = 'desc';
+                $rss_args->member_srl = $logged_info->member_srl;
+                $rss_args->list_count = 30;
+                $output = executeQueryArray('livexe.getRssList', $rss_args);
+
+                Context::set('my_feed_list', $output->data);
+                Context::set('total_count', $output->total_count);
+                Context::set('total_page', $output->total_page);
+                Context::set('page', $output->page);
+                Context::set('page_navigation', $output->page_navigation);
+            }
+
+            $this->setTemplateFile('my_feeds');
         }
 
         /**

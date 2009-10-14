@@ -2,11 +2,14 @@
     <tables>
         <table name="livexe_documents" alias="documents"/>
         <table name="livexe_rss" alias="rss" />
+        <table name="member" alias="member" />
     </tables>
     <columns>
         <column name="documents.*" />
         <column name="rss.title" alias="rss_title" />
         <column name="rss.homepage" alias="homepage" />
+        <column name="rss.rss_url" alias="rss_url" />
+        <column name="member.nick_name" alias="nick_name" />
     </columns>
     <conditions>
         <condition operation="equal" column="documents.module_srl" var="module_srl" filter="number" />
@@ -18,6 +21,7 @@
             <condition operation="like" column="rss.homepage" var="homepage" pipe="or" />
             <condition operation="like" column="documents.tags" var="tag" pipe="or" />
         </group>
+        <condition operation="equal" column="member.member_srl" var="documents.member_srl" filter="number" pipe="and"/>
     </conditions>
     <navigation>
         <index var="sort_index" default="documents.list_order" order="order_type" />
