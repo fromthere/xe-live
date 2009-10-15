@@ -22,7 +22,7 @@
 				<li class="tag <!--@if(!$_idx)-->active<!--@end-->"><a href="#tagMore" class="anchor" onclick="live_tab_show(jQuery(this),jQuery(this).parents('ul.liveTab')); return false">...</a>
 					<ul class="liveList" id="tagMore">
 						<!--@foreach($tags as $val)-->
-						<li class="level{$val->rank}"> <a href="{getUrl('search_target','tag','search_keyword', $val->tag)}">{htmlspecialchars($val->tag)}</a> </li>
+						<li class="level{$val->rank}"><a href="{getUrl('search_target','tag','search_keyword', $val->tag)}">{htmlspecialchars($val->tag)}</a></li>
 						<!--@end-->
 					</ul>
 				</li>
@@ -66,7 +66,7 @@
 					<!--@end-->
 				</ul>
 				<!--@end-->
-				<cite> <span class="date">{zdate($val->regdate,"Y/m/d H:i")}</span> <a href="{$val->homepage}"><span class="citeTitle">{htmlspecialchars($val->rss_title)}</span></a> / <a href="#" class="member_{$val->member_srl}" onclick="return false;">{$val->nick_name}</a> <a href="{$val->rss_url}"><img src="./img/iconRssSmall.gif" alt="rss" /></a> </cite></li>
+				<cite> <span class="date">{zdate($val->regdate,"Y/m/d H:i")}</span> <a href="{$val->homepage}"><span class="citeTitle">{htmlspecialchars($val->rss_title)}</span></a> / {$val->author} <a href="{$val->rss_url}"><img src="./img/iconRssSmall.gif" alt="rss" /></a> </cite></li>
 			<!--@end-->
 		</ul>
 <!-- /.liveArticle -->

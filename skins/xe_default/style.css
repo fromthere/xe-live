@@ -52,12 +52,12 @@ body{ height:100%;}
 .liveTab .liveList li.item .hour{ right:0;}
 .liveTab .liveList li.more{ position:absolute; top:-30px; right:0; font-family:Tahoma; font-size:11px;}
 .liveTab .liveList li.more a{ color:#767676;}
-#tagMore{ overflow:hidden; line-height:1.5; text-align:justify;}
-#tagMore li{ position:relative; left:-6px; margin:0 -4px 0 0; display:inline; white-space:nowrap;}
-#tagMore li a{ padding:0 6px 0 7px; background:url(./img/lineTextDiv.gif) no-repeat left center;}
-#tagMore li.level4 a{ font-size:12px; color:#767676;}
-#tagMore li.level3 a{ font-size:12px; color:#767676; font-weight:bold;}
-#tagMore li.level2 a{ font-size:14px; color:#767676; font-weight:bold;}
+#tagMore{ overflow:hidden; line-height:1.5; text-align:justify; clear:both; }
+#tagMore li{ margin:0; display:block; white-space:nowrap; float:left; height:30px; *zoom:1; overflow:hidden; vertical-align:middle;  }
+#tagMore li a{ padding:0 10px; vertical-align:middle; }
+#tagMore li.level4 a{ font-size:12px; color:#767676; }
+#tagMore li.level3 a{ font-size:12px; color:#767676; font-weight:bold; }
+#tagMore li.level2 a{ font-size:14px; color:#767676; font-weight:bold; }
 #tagMore li.level1 a{ font-size:18px; color:#666; font-weight:bold;}
 
 /* Live Article */
