@@ -130,11 +130,11 @@ body{ height:100%;}
 .liveButton,
 .liveButton a,
 .liveButton button,
-.liveButton input{ position:relative; margin:0; display:inline-block; text-decoration:none !important; border:0; font-size:12px; font-family:Tahoma, Sans-serif; white-space:nowrap; background:url(./img/buttonWhite.gif) no-repeat; vertical-align:middle; overflow:visible; color:#333;}
+.liveButton input{ position:relative; margin:0; display:inline-block; *display:inline; text-decoration:none !important; border:0; font-size:12px; font-family:Tahoma, Sans-serif; white-space:nowrap; background:url(./img/buttonWhite.gif) no-repeat; vertical-align:middle; overflow:visible; color:#333; cursor:pointer; *zoom:1;}
 .liveButton{ height:23px; padding:0; margin-right:2px; background-position:left top;}
 .liveButton a,
 .liveButton button,
-.liveButton input{ left:2px; *vertical-align:top; cursor:pointer;}
+.liveButton input{ left:2px; *vertical-align:top;}
 
 /* Button Size */
 .liveButton.large{ height:29px; background-position:left -30px; }
@@ -162,17 +162,17 @@ body{ height:100%;}
 .liveButton.strong *{ font-weight:bold !important;}
 
 /* Add Feed */
-#addFeed{ display:none; position:fixed; _position:absolute; left:0; top:0; width:100%; height:100%; z-index:100;}
-#addFeed .bg{ position:absolute; left:0; top:0; background:#000; width:100%; height:100%; opacity:.5; filter:alpha(opacity=50);}
-#addFeed fieldset{ position:relative; top:100px; border:0; margin:0 auto; padding:0; width:600px; border:2px solid #eee; background:#fff;}
+#addFeed{ display:none; position:fixed; *position:absolute; left:0; top:0; width:100%; height:100%; z-index:100; *zoom:1;}
+#addFeed .bg{ *display:none; position:absolute; left:0; top:0; background:#000; width:100%; height:100%; opacity:.5; filter:alpha(opacity=50);}
+#addFeed fieldset{ position:relative; top:100px; border:0; margin:0 auto; padding:0; width:500px; border:2px solid #eee; *border-color:#999; background:#fff; *zoom:1;}
 #addFeed fieldset legend{ position:absolute; width:1px; height:1px; overflow:hidden; left:-2000%; visibility:hidden; font-size:0; line-height:0;}
-#addFeed form{ margin:20px 30px;}
+#addFeed form{ margin:20px 30px; *zoom:1;}
 #addFeed p{ color:#767676; margin:0 0 20px 0; line-height:1.5;}
 #addFeed p.denied{ margin:10px 20px;}
 #addFeed dl{ margin:0; padding:0;}
 #addFeed dt{ font-weight:bold; margin:0 0 2px 0;}
 #addFeed dd{ margin:0 0 7px 0;}
-#addFeed .inputText{font-size:12px; border:1px solid #bbb; border-right-color:#ddd; border-bottom-color:#ddd; padding:3px 4px; height:15px; vertical-align:middle; width:530px;}
+#addFeed .inputText{font-size:12px; border:1px solid #bbb; border-right-color:#ddd; border-bottom-color:#ddd; padding:3px 4px; height:15px; vertical-align:middle; width:430px;}
 #addFeed .inputText:focus{ background:#FFC;}
 #addFeed .close{ position:absolute; top:10px; right:10px; padding:0; overflow:hidden; width:20px; height:20px; border:0; background:url(./img/buttonDelete.gif) no-repeat center; cursor:pointer;}
 #addFeed .close span{ position:absolute; width:1px; height:1px; overflow:hidden; left:-2000%; visibility:hidden; font-size:0; line-height:0;}
