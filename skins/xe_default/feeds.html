@@ -17,8 +17,7 @@
 			<ul class="feedList">
 				<!--@foreach($feeds_list as $key => $val)-->
 				<li> 
-                    <a href="{$val->rss_url}"><img src="./img/iconRssSmall.gif" alt="rss" /></a> 
-                    <a href="{$val->homepage}">{$val->title}</a>
+                    <a href="{$val->rss_url}" class="url">{$val->title}</a> 
                     <a href="#" class="member_{$val->member_srl} author" onclick="return false;">{$val->nick_name}</a> 
                 </li>
 				<!--@end-->

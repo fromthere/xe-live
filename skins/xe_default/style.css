@@ -101,14 +101,14 @@ body{ height:100%;}
 .feedContainer .feedList{ list-style:none; margin:0; padding:0; border-top:1px solid #ddd;}
 .feedContainer .feedList li{ position:relative; border-bottom:1px dotted #ddd; padding:7px 0; text-indent:5px; color:#767676; font-size:11px;}
 .feedContainer .feedList li img { vertical-align:middle; }
-.feedContainer .feedList li a{ color:#767676;font-size:12px;}
-.feedContainer .feedList li a.author { position:absolute; top:8px; right:5px; }
+.feedContainer .feedList li a.url{ color:#767676; font-size:12px; padding:0 0 0 16px; background:url(./img/iconRssSmall.gif) no-repeat left center;}
+.feedContainer .feedList li a.author { position:absolute; top:8px; right:5px; color:#767676; font-size:12px;}
 .feedContainer .feedList li .reject{ position:absolute; top:8px; right:5px; width:18px; height:18px; overflow:visible; padding:0; border:0; background:url(./img/buttonDelete.gif) no-repeat center; cursor:pointer;}
 .feedContainer .feedList li .reject span{ position:absolute; width:1px; height:1px; overflow:hidden; left:-2000%; visibility:hidden; font-size:0; line-height:0;}
 .feedContainer.myFeeds p { text-align:center; margin:20px 0; color:#767676;}
 
 /* Pagination */
-.pagination{ padding:15px 0; margin:0; text-align:center;}
+.pagination{ position:relative; padding:15px 0; margin:0; text-align:center;}
 .pagination *{ margin:0; padding:0;}
 .pagination img{ border:0;}
 .pagination a,
@@ -125,6 +125,7 @@ body{ height:100%;}
 .pagination a.prevEnd{ padding-left:15px; background:#fff url(./img/arrowPrevEndA1.gif) no-repeat left center; }
 .pagination a.next{ padding-right:10px; background:#fff url(./img/arrowNextA1.gif) no-repeat right center; }
 .pagination a.nextEnd{ padding-right:15px; background:#fff url(./img/arrowNextEndA1.gif) no-repeat right center; }
+.pagination a.opml{ position:absolute; font-weight:normal; font-size:11px; top:15px; left:5px; padding:0 0 0 16px; margin:0; border:0; text-decoration:none; color:#767676; background:transparent url(./img/iconOpmlSmall.gif) no-repeat 0 center !important;}
 
 /* Button Reset */
 .liveButton,
