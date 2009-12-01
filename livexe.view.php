@@ -199,6 +199,27 @@
             $this->setTemplateFile('my_feeds');
         }
 
+        function dispLivexeMyFeedsOPML() {
+            if(Context::get('is_logged')) {
+                $logged_info = Context::get('logged_info');
+                Context::set('myname', $logged_info->nick_name);
+                $rss_args->module_srl = $this->module_srl;
+                $rss_args->member_srl = $logged_info->member_srl;
+                $output = executeQueryArray('livexe.getRssListWithoutNav', $rss_args);
+
+                Context::set('my_feed_list', $output->data);
+            }
+            else
+            {
+                return $this-> dispLivexeContent();
+            }
+
+            $this->setTemplatePath($this->module_path.'tpl/');
+            $this->setTemplateFile('opml');
+
+            Context::setResponseMethod("XMLRPC");
+        }
+
         /**
          * @brief 등록된 RSS 주소들의 item들을 crawling
          * cron을 이용하지 않고 웹으로 crawling 하는 페이지

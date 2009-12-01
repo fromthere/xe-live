@@ -25,6 +25,7 @@
         <action name="dispLivexeContent" type="view" index="true" />
         <action name="dispLivexeFeeds" type="view" />
         <action name="dispLivexeMyFeeds" type="view" />
+        <action name="dispLivexeMyFeedsOPML" type="view" />
         <action name="dispLivexeCrawler" type="view" standalone="true" />
 
         <action name="procLivexeInsert" type="controller" />

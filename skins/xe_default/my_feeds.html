@@ -35,6 +35,9 @@
 				<!--@end-->
 				<a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division)}" class="nextEnd">{$lang->last_page}</a>
 			</div>
+            <!--@if(Context::get('is_logged'))-->
+            <a href="{getUrl('act','dispLivexeMyFeedsOPML')}">OPML</a>
+            <!--@endif-->
 			<!--@else-->
 
             <p>{$lang->about_reg_livexe}</p>
