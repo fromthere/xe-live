@@ -6,7 +6,7 @@
     <description xml:lang="ko">등록된 RSS 주소를 이용하여 글 수집/ 출력을 하는 메타 사이트 제작용 모듈</description>
     <description xml:lang="en">등록된 RSS 주소를 이용하여 글 수집/ 출력을 하는 메타 사이트 제작용 모듈</description>
     <description xml:lang="jp">登録したRSSから記事を収集・表示するメタサイト構築用モジュール</description>
-    <version>0.3</version>
+    <version>0.4</version>
     <date>2009-04-13</date>
     <category>service</category>
 
