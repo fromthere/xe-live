@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  livexeView
-     * @author zero (zero@nzeo.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  livexe 모듈의 View class
      **/
 

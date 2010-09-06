@@ -1,7 +1,7 @@
 <?php
     /**
      * @class  livexeAdminController
-     * @author zero (zero@nzeo.com)
+     * @author NHN (developers@xpressengine.com)
      * @brief  liveXE 모듈의 admin controller class
      **/
 
