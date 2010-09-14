@@ -97,20 +97,17 @@ select{width:90%}
 .lt .auth{margin:0 0 10px 10px; color:#666; display:block; }
 .lt .auth em{margin:0 5px 0 0;border-left:1px solid #ccc;padding:0 0 0 5px}
 .lt .auth span{border-left:1px solid #ccc;padding:0 0 0 5px}
-.lt .th{float:left;margin:0 10px 0 0;border:1px solid #ccc;width:80px;box-shadow:0 0 3px #333;-moz-box-shadow:0 0 3px #333;-webkit-box-shadow:0 0 3px #333}
+.lt .th{float:left;margin:0 10px 5px 0;border:1px solid #ccc;background:#666;color:#fff;text-align:center;line-height:80px;width:80px;height:80px;font-size:14px}
 .lt p{margin:0 0 10px 0;padding:0 10px;color:#666}
 .lt p a{display:inline;padding:0;text-decoration:underline}
 .lt p a:after{display:none}
 .lt em{margin:10px; color:#f60; clear:both; display:block;}
-
 .lt li.rss { padding:10px 0 10px 20px; background:url(../img/rss.gif) no-repeat 10px 15px; }
 .lt li.rss a { display:inline; }
 .lt li.rss span.auth { display:inline; margin:0 0 0 10px; }
 .lt li.rss em { display:inline; }
-
 .lt ul.tag { margin:0 0 10px 10px; padding-left:30px; background:url(../img/tag.gif) no-repeat left 5px; }
 .lt ul.tag li { margin:0 20px 0 0; border:none; display:inline; }
-
 /* Pagenation */
 .pn{padding:10px 0;text-align:center;border-top:1px solid #999;font-size:12px}
 .pn a,.pn strong{padding:5px 10px;display:inline-block;border:1px solid #ccc;text-decoration:none;background:#f8f8f8;color:#333}
