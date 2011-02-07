@@ -56,6 +56,7 @@
             $args->page = Context::get('page');
             $args->list_count = 20;
             $args->page_count = 10;
+			$args->module = 'livexe';
             $output = executeQueryArray('livexe.getLiveXEList', $args);
 
             // 템플릿에 쓰기 위해서 context::set
