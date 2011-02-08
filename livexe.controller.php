@@ -71,7 +71,8 @@
                 $tmpFile = sprintf('%sfiles/cache/liveXE/update', _XE_PATH_);
                 if(file_exists($tmpFile)) {
                     $result['latest'] = filemtime($tmpFile);
-                    if(filemtime($tmpFile) + 60*10 > time()) return $result;
+                    if(filemtime($tmpFile) + 1 > time()) return $result;
+                    //if(filemtime($tmpFile) + 60*10 > time()) return $result;
                 }
             }
 
@@ -239,19 +240,24 @@
             $doc = $oXml->parse($body);
 
             if($doc->rss->attrs->version == '2.0') {
+				debugPrint("rss2");
                 $type = 'rss2';
                 $items = $doc->rss->channel->item;
             } elseif(preg_match('/atom/i',$doc->feed->attrs->xmlns)) {
+				debugPrint("atom");
                 $type = 'atom';
                 $items = $doc->feed->entry;
             } else return;
 
+			// 아티클이 없을 때의 처리
+			if(!$items) $items = array();
 
             if(!is_array($items)) {
                 $clone_item = clone($items);
                 unset($items);
                 $items[] = $clone_item;
             }
+
 
             $output = array();
             foreach($items as $key => $val) {
