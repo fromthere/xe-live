@@ -296,15 +296,16 @@
                     }
 
                 } elseif($type == 'atom') {
-
-                    $obj->link = trim($val->link[0]->attrs->href);
+					
+					// link 가 여러 개 있을 경우와 하나 있을 경우 다르게 처리
+					if(is_array($val->link))
+						$obj->link = trim($val->link[0]->attrs->href);
+					else
+						$obj->link = trim($val->link->attrs->href);
 
                     $obj->title = strip_tags(trim($val->title->body));
-
                     $obj->author = trim($val->author->name->body);
-
                     $obj->content = trim($val->content->body);
-
                     $regdate = $val->published->body;
                     if(strtotime($regdate)>0) $obj->regdate =  date("YmdHis", strtotime($regdate));
                     else $obj->regdate = substr(str_replace(array('-',':',' ','T'),'',$regdate),0,14);
