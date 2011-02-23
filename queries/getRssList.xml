@@ -4,7 +4,7 @@
         <table name="member" />
     </tables>
     <columns>
-        <column name="*" />
+        <column name="livexe_rss.*" />
         <column name="member.nick_name" alias="nick_name"/>
     </columns>
     <conditions>
