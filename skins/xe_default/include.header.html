@@ -1,6 +1,5 @@
 <!--%import("./style.css")-->
 <!--%import("./live.js")-->
-
 <!-- #liveXE -->
 <div id="liveXE">
 
@@ -18,6 +17,10 @@
 		</div>
 		<!--@if($module_info->comment)-->
 		<p class="liveDescription">{$module_info->comment}</p>
+		<!--@end-->
+
+		<!--@if($module_info->header_text)-->
+			<p class="liveHeaderText">{$module_info->header_text}</p>
 		<!--@end-->
 		
 		<!-- .liveSearch -->
