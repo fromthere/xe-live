@@ -407,6 +407,7 @@
 			$oXml = new XmlParser();
 			$doc = $oXml->parse($body);
 
+
 			if($doc->rss->attrs->version == '2.0') {
 				$this->add('title',$doc->rss->channel->title->body);
 				$this->add('homepage',$doc->rss->channel->link->body);
@@ -469,7 +470,7 @@
 			if($is_matched) $oldEncoding = $matches[1];
 			else return $body;
 			$correctedPI = str_replace($oldEncoding, $actualEncoding, $oldPI);
-			$correctedBody = preg_replace('/<\?(.+)\?>/', $correctedPI, $body);
+			$correctedBody = preg_replace('/<\?(.+)\?>/', $correctedPI, $body, 1);
 
 			return $correctedBody;
 
