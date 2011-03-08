@@ -7,10 +7,13 @@
 
 	class livexeController extends livexe {
 
+		var $content_max_length = 65535;
+
 		/**
 		 * @brief 초기화
 		 **/
 		function init() {
+
 		}
 
 		/**
@@ -196,6 +199,7 @@
 				}
 
 				$output = executeQuery('livexe.insertLiveDocument', $args);
+
 				if(!$output->toBool()) continue;
 
 				$status['items']++;
@@ -242,8 +246,6 @@
 			$oXml = new XmlParser();
 			$doc = $oXml->parse($body);
 
-			debugPrint($doc);
-
 			if($doc->rss->attrs->version == '2.0') {
 				$type = 'rss2';
 				$items = $doc->rss->channel->item;
@@ -281,6 +283,9 @@
 					$obj->content = trim($val->description->body);
 					if($val->{"content:encoded"}->body) $obj->content = trim($val->{"content:encoded"}->body);
 
+					// 과다하게 긴 내용 절단. by Yarra
+					if(mb_strlen($obj->content) > $this->content_max_length) $obj->content = mb_substr($obj->content, 0, $this->content_max_length).'...';
+
 					$regdate = $val->pubdate->body;
 					if($val->{"dc:date"}->body) $regdate = $val->{"dc:date"}->body;
 					$regdate = str_replace(array('&quot;','&lt;','&gt;','&apos;','&amp;',),array('"','<','>',"'",'&'),$regdate);
@@ -311,6 +316,7 @@
 					$obj->title = strip_tags(trim($val->title->body));
 					$obj->author = trim($val->author->name->body);
 					$obj->content = trim($val->content->body);
+					
 					$regdate = $val->published->body;
 					if(strtotime($regdate)>0) $obj->regdate =  date("YmdHis", strtotime($regdate));
 					else $obj->regdate = substr(str_replace(array('-',':',' ','T'),'',$regdate),0,14);
@@ -444,7 +450,6 @@
 			$matches = array();
 			preg_match('/<\?(.+)\?>/', $body, $matches);
 			$has_declared_encoding = preg_match('/encoding="(.+)"/', $matches[0], $matches);
-			debugPrint($matches);
 			$declared_encoding = strtolower($matches[0]);
 
 			if(!$has_declared_encoding) return 0;
