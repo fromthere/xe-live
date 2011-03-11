@@ -21,7 +21,9 @@
          * @brief 설치가 이상이 없는지 체크하는 method
          **/
         function checkUpdate() {
-
+			$oDB = &DB::getInstance();
+			// 2011.03.10 link field 변경에 따름.
+			if($oDB->isColumnExists('livexe_documents', 'link')) return true;
             return false;
         }
 
@@ -29,6 +31,28 @@
          * @brief 업데이트 실행
          **/
         function moduleUpdate() {
+			$oDB = &DB::getInstance();
+
+			// 2010.03.10 livexe_document.link 필드를 livece_document.link_new 로 교체.
+			if($oDB->isColumnExists('livexe_documents', 'link'))
+			{
+				$oDB->addColumn('livexe_documents', 'link_new', 'text', null, null, true);
+				$output_old = executeQueryArray('livexe.getLinksWithRssDocumentSrl', null);
+				if(!$output_old->toBool()) return new Object(-1, 'update_failed');
+				if(count($output_old))
+				{
+					foreach($output_old->data as $key => $val)
+					{
+						unset($args);
+						$args->livexe_document_srl = $val->livexe_document_srl;
+						$args->link_new = $val->link;
+						$output_updated = executeQuery('livexe.updateDocumentsLinks', $args);
+						if(!$output_updated->toBool()) return new Object(-1, 'update_failed');
+					}
+					$oDB->dropColumn('livexe_documents', 'link');
+				}
+			}
+
 
             return new Object(0, 'success_updated');
         }

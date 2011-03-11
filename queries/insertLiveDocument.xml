@@ -10,7 +10,7 @@
         <column name="title" var="title" notnull="notnull" />
         <column name="content" var="content" notnull="notnull" />
         <column name="author" var="author" />
-        <column name="link" var="link" notnull="notnull" />
+        <column name="link_new" var="link" notnull="notnull" />
         <column name="tags" var="tags" notnull="notnull" />
         <column name="thumbnail" var="thumbnail" notnull="notnull" />
         <column name="regdate" var="regdate" notnull="notnull" />

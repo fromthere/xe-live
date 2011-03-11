@@ -6,7 +6,7 @@
     <column name="title" type="varchar" size="250" />
     <column name="content" type="bigtext" notnull="notnull" />
     <column name="author" type="varchar" size="250" />
-    <column name="link" type="varchar" size="255" notnull="notnull" index="idx_module_srl" />
+	<column name="link_new" type="text" notnull="notnull" />
     <column name="tags" type="text" />
     <column name="thumbnail" type="varchar" size="255" default="null" />
     <column name="regdate" type="date" index="idx_regdate " />
