@@ -307,9 +307,18 @@
 
 				} elseif($type == 'atom') {
 					
-					// link 가 여러 개 있을 경우와 하나 있을 경우 다르게 처리
-					if(is_array($val->link))
-						$obj->link = trim($val->link[0]->attrs->href);
+					// link 가 여러 개 있을 경우는 rel 속성이 alternate 인 것을 우선으로, 없으면 첫번째 것으로 처리
+					if(is_array($val->link)){
+						foreach($val->link as $key => $link)
+						{
+							if($link->attrs->rel == 'alternate') 
+							{
+								$obj->link = trim($link->attrs->href);
+								break;
+							}
+						}
+						if(!$obj->link) $obj->link = trim($val->link[0]->attrs->href);
+					}
 					else
 						$obj->link = trim($val->link->attrs->href);
 
