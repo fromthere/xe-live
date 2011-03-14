@@ -4,7 +4,18 @@
         <table name="livexe_rss" alias="rss" />
     </tables>
     <columns>
-        <column name="documents.*" />
+        <column name="documents.module_srl" alias="module_srl" />
+        <column name="documents.livexe_rss_srl" alias="livexe_rss_srl" />
+        <column name="documents.livexe_document_srl" alias="livexe_document_srl" />
+        <column name="documents.member_srl" alias="member_srl"/>
+        <column name="documents.title" alias="title" />
+        <column name="documents.content" alias="content" />
+        <column name="documents.author" alias="author" />
+        <column name="documents.link_new" alias="link" />
+        <column name="documents.tags" alias="tags" />
+        <column name="documents.thumbnail" alias="thumbnail" />
+        <column name="documents.regdate" alias="regdate" />
+        <column name="documents.list_order" alias="list_order" />
         <column name="rss.title" alias="rss_title" />
         <column name="rss.homepage" alias="homepage" />
     </columns>

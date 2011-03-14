@@ -14,6 +14,6 @@
         <page var="page" default="1" />
     </navigation>
     <groups>
-        <group column="documents.link" />
+        <group column="documents.link_new" />
     </groups>
 </query>

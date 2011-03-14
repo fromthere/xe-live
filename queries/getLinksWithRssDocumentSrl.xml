@@ -4,6 +4,6 @@
 	</tables>
 	<columns>
 		<column name="livexe_document_srl" />
-		<column name="link" />
+		<column name="link_new" alias="link" />
 	</columns>
 </query>

@@ -3,7 +3,7 @@
         <table name="livexe_documents" />
     </tables>
     <columns>
-        <column name="link_new" />
+        <column name="link_new" alias="link" />
         <column name="regdate" />
         <column name="livexe_document_srl" />
         <column name="thumbnail" />
