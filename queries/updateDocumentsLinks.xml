@@ -1,11 +1,9 @@
 <query id="updateDocumentsLinks" action="update">
 	<tables>
-		<table name="livexe_documents" />
+		<table name="livexe_documents" alias="D" />
 	</tables>
 	<columns>
-		<column name="link_new" var="link_new" />
+		<column name="D.link_new" var="link" default="D.link" />
 	</columns>
-	<conditions>
-		<condition operation="equal" column="livexe_document_srl" var="livexe_document_srl" />
-	</conditions>
+	<conditions />
 </query>
