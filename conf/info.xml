@@ -10,8 +10,8 @@
     <description xml:lang="jp">登録したRSSから記事を収集・表示するメタサイト構築用モジュール</description>
     <description xml:lang="zh-TW">蒐集並顯示所訂閱的 RSS 文章閱讀器模組。</description>
 	<description xml:lang="ko">Là Module sử dụng địa chỉ RSS để thu thập và xuất bản ra các bài viết để tạo ra một Meta Site</description>
-    <version>0.5</version>
-    <date>2009-04-13</date>
+    <version>0.6</version>
+    <date>2011-03-16</date>
     <category>service</category>
 
     <author email_address="developers@xpressengine.com" link="http://live.xpressengine.net">
