@@ -1,0 +1,1 @@
+XE Live is a RSS feed gathering module for [XpressEngine](http://code.google.com/p/xe-core/).
